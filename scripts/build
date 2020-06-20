@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+docker-compose \
+  -f ../dream-league-identity/docker-compose.yaml \
+  -f ../dream-league-identity/docker-compose.override.yaml \
+  build $@
+
+docker-compose \
+  -f ../dream-league-api-gateway/docker-compose.yaml \
+  -f ../dream-league-api-gateway/docker-compose.override.yaml \
+  build $@
+

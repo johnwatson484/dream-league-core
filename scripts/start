@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+if [ -z "$(docker network ls --filter name=^dream-league$ --format={{.Name}})" ]; then
+  echo "Creating dream-league Docker network"
+  docker network create dream-league
+fi
+
+docker-compose \
+  -f ../dream-league-identity/docker-compose.yaml \
+  -f ../dream-league-identity/docker-compose.override.yaml \
+  -f ../dream-league-identity/docker-compose.link.yaml \
+  up \
+  --detach
+
+docker-compose \
+  -f ../dream-league-api-gateway/docker-compose.yaml \
+  -f ../dream-league-api-gateway/docker-compose.override.yaml \
+  -f ../dream-league-api-gateway/docker-compose.link.yaml \
+  up \
+  --detach

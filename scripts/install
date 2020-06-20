@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# Clone repositories managed by this project into parent repo
+set -e
+projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)
+
+(
+  cd "${projectRoot}"
+  cd ..
+
+  printf "\nCloning repositories\n"
+
+  test -d dream-league-identity \
+    && >&2 echo "The 'dream-league-identity' directory already exists. Skipping." \
+    || git clone https://github.com/johnwatson484/dream-league-identity.git
+  test -d dream-league-api-gateway \
+    && >&2 echo "The 'dream-league-api-gateway' directory already exists. Skipping." \
+    || git clone https://github.com/johnwatson484/dream-league-api-gateway.git
+  
+  printf "\nBuilding images\n"
+
+  scripts/build
+)
+
