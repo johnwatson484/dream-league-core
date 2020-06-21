@@ -9,3 +9,8 @@ docker-compose \
   -f ../dream-league-api-gateway/docker-compose.override.yaml \
   build $@
 
+docker-compose \
+  -f ../dream-league-login/docker-compose.yaml \
+  -f ../dream-league-login/docker-compose.override.yaml \
+  build $@
+
