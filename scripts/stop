@@ -33,4 +33,11 @@ docker-compose \
   down \
   $@
 
+docker-compose \
+  -f ../dream-league-admin/docker-compose.yaml \
+  -f ../dream-league-admin/docker-compose.override.yaml \
+  -f ../dream-league-admin/docker-compose.link.yaml \
+  down \
+  $@
+
 docker network rm dream-league

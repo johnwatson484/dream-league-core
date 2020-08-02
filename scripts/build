@@ -23,3 +23,8 @@ docker-compose \
   -f ../dream-league-league/docker-compose.yaml \
   -f ../dream-league-league/docker-compose.override.yaml \
   build $@
+
+docker-compose \
+  -f ../dream-league-admin/docker-compose.yaml \
+  -f ../dream-league-admin/docker-compose.override.yaml \
+  build $@
