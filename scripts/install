@@ -13,19 +13,10 @@ projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pw
   test -d dream-league-api \
     && >&2 echo "The 'dream-league-api' directory already exists. Skipping." \
     || git clone https://github.com/johnwatson484/dream-league-api.git
-  test -d dream-league-api-gateway \
-    && >&2 echo "The 'dream-league-api-gateway' directory already exists. Skipping." \
-    || git clone https://github.com/johnwatson484/dream-league-api-gateway.git
   test -d dream-league-web \
     && >&2 echo "The 'dream-league-web' directory already exists. Skipping." \
     || git clone https://github.com/johnwatson484/dream-league-web.git
-  test -d dream-league-league \
-    && >&2 echo "The 'dream-league-league' directory already exists. Skipping." \
-    || git clone https://github.com/johnwatson484/dream-league-league.git
-  test -d dream-league-admin \
-    && >&2 echo "The 'dream-league-admin' directory already exists. Skipping." \
-    || git clone https://github.com/johnwatson484/dream-league-admin.git
-  
+    
   printf "\nBuilding images\n"
 
   scripts/build

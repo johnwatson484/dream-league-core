@@ -6,30 +6,9 @@ docker-compose \
   $@
 
 docker-compose \
-  -f ../dream-league-api-gateway/docker-compose.yaml \
-  -f ../dream-league-api-gateway/docker-compose.override.yaml \
-  -f ../dream-league-api-gateway/docker-compose.link.yaml \
-  down \
-  $@
-
-docker-compose \
   -f ../dream-league-web/docker-compose.yaml \
   -f ../dream-league-web/docker-compose.override.yaml \
   -f ../dream-league-web/docker-compose.link.yaml \
-  down \
-  $@
-
-docker-compose \
-  -f ../dream-league-league/docker-compose.yaml \
-  -f ../dream-league-league/docker-compose.override.yaml \
-  -f ../dream-league-league/docker-compose.link.yaml \
-  down \
-  $@
-
-docker-compose \
-  -f ../dream-league-admin/docker-compose.yaml \
-  -f ../dream-league-admin/docker-compose.override.yaml \
-  -f ../dream-league-admin/docker-compose.link.yaml \
   down \
   $@
 
