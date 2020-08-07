@@ -1,7 +1,7 @@
 docker-compose \
-  -f ../dream-league-identity/docker-compose.yaml \
-  -f ../dream-league-identity/docker-compose.override.yaml \
-  -f ../dream-league-identity/docker-compose.link.yaml \
+  -f ../dream-league-api/docker-compose.yaml \
+  -f ../dream-league-api/docker-compose.override.yaml \
+  -f ../dream-league-api/docker-compose.link.yaml \
   down \
   $@
 

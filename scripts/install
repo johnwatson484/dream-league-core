@@ -10,9 +10,9 @@ projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pw
 
   printf "\nCloning repositories\n"
 
-  test -d dream-league-identity \
-    && >&2 echo "The 'dream-league-identity' directory already exists. Skipping." \
-    || git clone https://github.com/johnwatson484/dream-league-identity.git
+  test -d dream-league-api \
+    && >&2 echo "The 'dream-league-api' directory already exists. Skipping." \
+    || git clone https://github.com/johnwatson484/dream-league-api.git
   test -d dream-league-api-gateway \
     && >&2 echo "The 'dream-league-api-gateway' directory already exists. Skipping." \
     || git clone https://github.com/johnwatson484/dream-league-api-gateway.git
