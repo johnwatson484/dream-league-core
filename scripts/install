@@ -16,9 +16,6 @@ projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pw
   test -d dream-league-api-gateway \
     && >&2 echo "The 'dream-league-api-gateway' directory already exists. Skipping." \
     || git clone https://github.com/johnwatson484/dream-league-api-gateway.git
-  test -d dream-league-login \
-    && >&2 echo "The 'dream-league-login' directory already exists. Skipping." \
-    || git clone https://github.com/johnwatson484/dream-league-login.git
   test -d dream-league-web \
     && >&2 echo "The 'dream-league-web' directory already exists. Skipping." \
     || git clone https://github.com/johnwatson484/dream-league-web.git

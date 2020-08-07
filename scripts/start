@@ -19,13 +19,6 @@ docker-compose \
   --detach
 
 docker-compose \
-  -f ../dream-league-login/docker-compose.yaml \
-  -f ../dream-league-login/docker-compose.override.yaml \
-  -f ../dream-league-login/docker-compose.link.yaml \
-  up \
-  --detach
-
-docker-compose \
   -f ../dream-league-web/docker-compose.yaml \
   -f ../dream-league-web/docker-compose.override.yaml \
   -f ../dream-league-web/docker-compose.link.yaml \
