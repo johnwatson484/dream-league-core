@@ -4,6 +4,7 @@ if [ -z "$(docker network ls --filter name=^dream-league$ --format={{.Name}})" ]
   docker network create dream-league
 fi
 
+echo "Starting dream-league-api"
 docker-compose \
   -f ../dream-league-api/docker-compose.yaml \
   -f ../dream-league-api/docker-compose.override.yaml \
@@ -11,6 +12,7 @@ docker-compose \
   up \
   --detach
 
+echo "Starting dream-league-web"
 docker-compose \
   -f ../dream-league-web/docker-compose.yaml \
   -f ../dream-league-web/docker-compose.override.yaml \
