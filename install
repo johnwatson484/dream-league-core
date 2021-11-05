@@ -6,7 +6,6 @@ projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pw
 
 (
   cd "${projectRoot}"
-  cd ..
 
   printf "\nCloning repositories\n"
 
@@ -16,9 +15,6 @@ projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pw
   test -d dream-league-web \
     && >&2 echo "The 'dream-league-web' directory already exists. Skipping." \
     || git clone https://github.com/johnwatson484/dream-league-web.git
-    
-  printf "\nBuilding images\n"
 
-  scripts/build
 )
 

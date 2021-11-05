@@ -4,5 +4,5 @@ projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; p
 
 cd "${projectRoot}"
 
-code ../dream-league-web && \
-  code ../dream-league-api
+code ./dream-league-web && \
+  code ./dream-league-api

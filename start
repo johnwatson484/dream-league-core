@@ -11,16 +11,16 @@ fi
 
 echo "Starting dream-league-api"
 docker-compose \
-  -f ../dream-league-api/docker-compose.yaml \
-  -f ../dream-league-api/docker-compose.override.yaml \
-  -f ../dream-league-api/docker-compose.link.yaml \
+  -f ./dream-league-api/docker-compose.yaml \
+  -f ./dream-league-api/docker-compose.override.yaml \
+  -f ./dream-league-api/docker-compose.link.yaml \
   up \
   --detach
 
 echo "Starting dream-league-web"
 docker-compose \
-  -f ../dream-league-web/docker-compose.yaml \
-  -f ../dream-league-web/docker-compose.override.yaml \
-  -f ../dream-league-web/docker-compose.link.yaml \
+  -f ./dream-league-web/docker-compose.yaml \
+  -f ./dream-league-web/docker-compose.override.yaml \
+  -f ./dream-league-web/docker-compose.link.yaml \
   up \
   --detach

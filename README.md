@@ -1,12 +1,32 @@
 # Dream League Core
 Support local development of dream-league services
 
-# Running all services
+## Clone repositories
 ```
-./scripts/install.sh  
-./scripts/start.sh
+./install
 ```
-# Stopping all services
+
+## Update repositories
 ```
-./scripts.stop.sh
+./update
+```
+
+## Open repositories in Visual Studio Code
+```
+./update
+```
+
+## Build images
+```
+./build
+```
+
+## Start containers
+```
+./start
+```
+
+## Stop containers
+```
+./stop
 ```

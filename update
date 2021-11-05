@@ -2,10 +2,10 @@
 set -e
 projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)"
 cd "${projectRoot}"
-cd ../dream-league-web && \
+cd ./dream-league-web && \
   git checkout master && \
   git pull
 cd "${projectRoot}"
-cd ../dream-league-api && \
+cd ./dream-league-api && \
   git checkout master && \
   git pull
