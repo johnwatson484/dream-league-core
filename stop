@@ -7,15 +7,11 @@ cd "${projectRoot}"
 docker-compose \
   -f ./dream-league-api/docker-compose.yaml \
   -f ./dream-league-api/docker-compose.override.yaml \
-  -f ./dream-league-api/docker-compose.link.yaml \
   down \
   $@
 
 docker-compose \
   -f ./dream-league-web/docker-compose.yaml \
   -f ./dream-league-web/docker-compose.override.yaml \
-  -f ./dream-league-web/docker-compose.link.yaml \
   down \
   $@
-
-docker network rm dream-league

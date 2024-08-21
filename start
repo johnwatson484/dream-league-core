@@ -4,23 +4,18 @@ projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; p
 
 cd "${projectRoot}"
 
-if [ -z "$(docker network ls --filter name=^dream-league$ --format={{.Name}})" ]; then
-  echo "Creating dream-league Docker network"
-  docker network create dream-league
-fi
-
 echo "Starting dream-league-api"
 docker-compose \
   -f ./dream-league-api/docker-compose.yaml \
   -f ./dream-league-api/docker-compose.override.yaml \
-  -f ./dream-league-api/docker-compose.link.yaml \
   up \
-  --detach
+  --detach \
+  $@
 
 echo "Starting dream-league-web"
 docker-compose \
   -f ./dream-league-web/docker-compose.yaml \
   -f ./dream-league-web/docker-compose.override.yaml \
-  -f ./dream-league-web/docker-compose.link.yaml \
   up \
-  --detach
+  --detach \
+  $@
