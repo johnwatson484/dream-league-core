@@ -4,14 +4,14 @@ projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; p
 
 cd "${projectRoot}"
 
-docker-compose \
-  -f ./dream-league-api/docker-compose.yaml \
-  -f ./dream-league-api/docker-compose.override.yaml \
+docker compose\
+  -f ./dream-league-api/compose.yaml \
+  -f ./dream-league-api/compose.override.yaml \
   down \
   $@
 
-docker-compose \
-  -f ./dream-league-web/docker-compose.yaml \
-  -f ./dream-league-web/docker-compose.override.yaml \
+docker compose\
+  -f ./dream-league-web/compose.yaml \
+  -f ./dream-league-web/compose.override.yaml \
   down \
   $@
