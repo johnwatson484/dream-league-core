@@ -1,0 +1,71 @@
+{
+  "folders": [
+    {
+      "path": "../dream-league-core",
+      "name": "dream-league-core"
+    },
+    {
+      "path": "../dream-league-web",
+      "name": "dream-league-web"
+    },
+    {
+      "path": "../dream-league-api",
+      "name": "dream-league-api"
+    }
+  ],
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Local: dream-league-api",
+        "detail": "Start dream-league-api host-native with dependency containers",
+        "type": "shell",
+        "command": "npm run local",
+        "options": {
+          "cwd": "${workspaceFolder:dream-league-api}"
+        },
+        "isBackground": true,
+        "presentation": {
+          "group": "local",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Local: dream-league-web",
+        "detail": "Start dream-league-web host-native",
+        "type": "shell",
+        "command": "npm run local",
+        "options": {
+          "cwd": "${workspaceFolder:dream-league-web}"
+        },
+        "isBackground": true,
+        "presentation": {
+          "group": "local",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Local: Start all",
+        "detail": "Start all services host-native in parallel",
+        "dependsOn": [
+          "Local: dream-league-api",
+          "Local: dream-league-web"
+        ],
+        "dependsOrder": "parallel",
+        "problemMatcher": []
+      },
+      {
+        "label": "Local: Seed",
+        "detail": "Seed the database (one-time, host-native)",
+        "type": "shell",
+        "command": "npm run seed",
+        "options": {
+          "cwd": "${workspaceFolder:dream-league-api}"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+}

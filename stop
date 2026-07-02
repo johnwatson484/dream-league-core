@@ -1,17 +1,22 @@
-#!/usr/bin/env sh
+#!/bin/bash
 set -e
+
+use_docker=false
+extra_args=()
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --docker) use_docker=true ;;
+    *) extra_args+=("$1") ;;
+  esac
+  shift
+done
+
 projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)"
 
-cd "${projectRoot}"
-
-docker compose\
-  -f ./dream-league-api/compose.yaml \
-  -f ./dream-league-api/compose.override.yaml \
-  down \
-  $@
-
-docker compose\
-  -f ./dream-league-web/compose.yaml \
-  -f ./dream-league-web/compose.override.yaml \
-  down \
-  $@
+if [ "$use_docker" = true ]; then
+  cd "${projectRoot}"; cd ./dream-league-api  && docker compose --profile app down "${extra_args[@]}"
+  cd "${projectRoot}"; cd ./dream-league-web   && docker compose --profile app down "${extra_args[@]}"
+else
+  cd "${projectRoot}"; cd ./dream-league-api  && docker compose down "${extra_args[@]}"
+fi

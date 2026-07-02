@@ -1,15 +1,7 @@
-#!/usr/bin/env sh
+#!/bin/bash
 set -e
+
 projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)"
 
-cd "${projectRoot}"
-
-docker compose\
-  -f ./dream-league-api/compose.yaml \
-  -f ./dream-league-api/compose.override.yaml \
-  build $@
-
-docker compose\
-  -f ./dream-league-web/compose.yaml \
-  -f ./dream-league-web/compose.override.yaml \
-  build $@
+cd "${projectRoot}"; cd ./dream-league-api  && docker compose --profile app build
+cd "${projectRoot}"; cd ./dream-league-web   && docker compose --profile app build
