@@ -1,21 +1,45 @@
-#!/usr/bin/env sh
+#!/bin/bash
 set -e
+
+seed_database=false
+use_docker=false
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --docker) use_docker=true ;;
+    -s|--seed) seed_database=true ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Valid options:"
+      echo "  --docker      Run all apps in Docker (default: host-native)"
+      echo "  -s | --seed   Seed the database"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
 projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)"
 
-cd "${projectRoot}"
+if [ "$use_docker" = true ]; then
+  cd "${projectRoot}"; cd ./dream-league-api  && docker compose --profile app up -d
+  cd "${projectRoot}"; cd ./dream-league-web   && docker compose --profile app up -d
 
-echo "Starting dream-league-api"
-docker compose\
-  -f ./dream-league-api/compose.yaml \
-  -f ./dream-league-api/compose.override.yaml \
-  up \
-  --detach \
-  $@
+  if [ "$seed_database" = true ]; then
+    cd "${projectRoot}"; ./dream-league-core/seed --docker
+  fi
+else
+  if [ "$seed_database" = true ]; then
+    cd "${projectRoot}"; cd ./dream-league-api && docker compose up -d
+    cd "${projectRoot}"; ./dream-league-core/seed
+  fi
 
-echo "Starting dream-league-web"
-docker compose\
-  -f ./dream-league-web/compose.yaml \
-  -f ./dream-league-web/compose.override.yaml \
-  up \
-  --detach \
-  $@
+  echo ""
+  echo "To start the apps host-native:"
+  echo ""
+  echo "  1. Open the workspace:  code ${projectRoot}/dream-league-core/dream-league.code-workspace"
+  echo "  2. Run the task:        Ctrl+Shift+P > Tasks: Run Task > Local: Start all"
+  echo ""
+  echo "Each app manages its own dependency containers via npm run local."
+  echo ""
+fi

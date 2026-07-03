@@ -1,0 +1,38 @@
+#!/bin/bash
+set -e
+
+use_docker=false
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --docker) use_docker=true ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Valid options:"
+      echo "  --docker    Seed by exec-ing into the running API container"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+projectRoot=$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)
+
+cd "${projectRoot}"
+
+if [ "$use_docker" = true ]; then
+  containerId=$(cd ./dream-league-api && docker compose ps -q dream-league-api)
+
+  if [ -z "${containerId}" ]; then
+    echo "Error: dream-league-api container is not running. Start it first with ./start --docker"
+    exit 1
+  fi
+
+  echo "Seeding database (via container)..."
+  docker exec "${containerId}" npx sequelize-cli db:seed:all
+else
+  echo "Seeding database (host-native, localhost)..."
+  cd ./dream-league-api && npm run seed
+fi
+
+echo "Database seeded successfully"
