@@ -11,6 +11,10 @@
     {
       "path": "../dream-league-api",
       "name": "dream-league-api"
+    },
+    {
+      "path": "../dream-league-videprinter",
+      "name": "dream-league-videprinter"
     }
   ],
   "tasks": {
