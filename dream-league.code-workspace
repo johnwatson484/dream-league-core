@@ -15,6 +15,9 @@
     {
       "path": "../dream-league-videprinter",
       "name": "dream-league-videprinter"
+    },
+    {
+      "path": "../dream-league-acceptance-tests"
     }
   ],
   "tasks": {
