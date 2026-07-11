@@ -27,7 +27,7 @@
         "label": "Local: dream-league-api",
         "detail": "Start dream-league-api host-native with dependency containers",
         "type": "shell",
-        "command": "npm run local",
+        "command": "trap true INT; npm run local; exec bash",
         "options": {
           "cwd": "${workspaceFolder:dream-league-api}"
         },
@@ -42,7 +42,7 @@
         "label": "Local: dream-league-web",
         "detail": "Start dream-league-web host-native",
         "type": "shell",
-        "command": "npm run local",
+        "command": "trap true INT; npm run local; exec bash",
         "options": {
           "cwd": "${workspaceFolder:dream-league-web}"
         },
@@ -71,6 +71,44 @@
         "options": {
           "cwd": "${workspaceFolder:dream-league-api}"
         },
+        "problemMatcher": []
+      },
+      {
+        "label": "Terminal: dream-league-api",
+        "type": "shell",
+        "command": "exec bash",
+        "options": {
+          "cwd": "${workspaceFolder:dream-league-api}"
+        },
+        "isBackground": true,
+        "presentation": {
+          "group": "terminals",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Terminal: dream-league-web",
+        "type": "shell",
+        "command": "exec bash",
+        "options": {
+          "cwd": "${workspaceFolder:dream-league-web}"
+        },
+        "isBackground": true,
+        "presentation": {
+          "group": "terminals",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Terminal: Open API + Web",
+        "detail": "Open split terminals for dream-league-api and dream-league-web",
+        "dependsOn": [
+          "Terminal: dream-league-api",
+          "Terminal: dream-league-web"
+        ],
+        "dependsOrder": "parallel",
         "problemMatcher": []
       }
     ]
